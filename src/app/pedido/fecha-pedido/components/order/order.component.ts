@@ -43,7 +43,7 @@ export class OrderComponent implements OnInit {
       cliente: this.formBuilder.control('', [Validators.required]),
       formaPagamento: this.formBuilder.control('', [Validators.required])
     }, {validators: [OrderComponent.equalsTo], updateOn: 'blur'});
-    
+      
   }
 
   static equalsTo(group: AbstractControl): {[key:string]: boolean} {

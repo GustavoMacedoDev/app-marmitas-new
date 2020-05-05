@@ -6,6 +6,7 @@ import { ListaPedidoComponent } from './components/lista-pedido/lista-pedido.com
 import { OrderMesaComponent } from './components/order-mesa/order-mesa.component';
 import { OrderMesaConfirmationComponent } from './components/order-mesa-confirmation/order-mesa-confirmation.component';
 import { ListaPedidoMesaComponent } from './components/lista-pedido-mesa/lista-pedido-mesa.component';
+import { PagamentoMesaComponent } from './components/pagamento-mesa/pagamento-mesa.component';
 
 export const FechaPedidoRoutes: Routes = [
 	{
@@ -29,6 +30,9 @@ export const FechaPedidoRoutes: Routes = [
   },
   {
     path: 'order-mesa-confirmation', component: OrderMesaConfirmationComponent
+  },
+  {
+    path: 'pagamento-mesa/:id', component: PagamentoMesaComponent
   }
 ];
 

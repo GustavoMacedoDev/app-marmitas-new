@@ -4,26 +4,53 @@ import { ActivatedRoute } from '@angular/router';
 import { PedidoDto } from 'src/app/shared';
 import * as jsPdf from  'jspdf';
 import { ListaPedido } from 'src/app/shared/interfaces/lista-pedido.dto';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormaPagamentoService } from 'src/app/shared/services/forma-pagamento.service';
+import { FormaPagamento } from 'src/app/shared/models/forma-pagamento.model';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-pedido-mesa',
   templateUrl: './lista-pedido-mesa.component.html',
-  styleUrls: ['./lista-pedido-mesa.component.css']
+  styleUrls: ['./lista-pedido-mesa.component.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class ListaPedidoMesaComponent implements OnInit {
 
   pedido: ListaPedido;
   dados: any;
   @ViewChild('content') content: ElementRef;
+  formaPagamentos: FormaPagamento[];
+  form: FormGroup;
 
   constructor(
               private pedidoService: PedidoService,
-              private route: ActivatedRoute
-  ) { }
+              private formaPagamentoService: FormaPagamentoService,
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder,
+              config: NgbModalConfig, 
+              private modalService: NgbModal
+              ) { 
+                config.backdrop = 'static';
+                config.keyboard = false;
+              }
 
   ngOnInit(): void {
     this.pedidoService.listaPedidoById(this.route.snapshot.params['id'])
     .subscribe(res => this.pedido = res);
+    this.formaPagamentoService.listarFormasPagamento().subscribe(res => this.formaPagamentos = res);
+    this.gerarForm();
+    console.log(this.form.value);
+  }
+
+  gerarForm() {
+    this.form = new FormGroup({
+      formaPagamento: this.formBuilder.control('', [Validators.required])
+    })
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 
   imprimir(){

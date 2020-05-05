@@ -25,6 +25,7 @@ import { OrderMesaComponent } from './components/order-mesa/order-mesa.component
 import { RevisaMesaComponent } from './components/order-mesa/revisa-mesa/revisa-mesa.component';
 import { OrderMesaConfirmationComponent } from './components/order-mesa-confirmation/order-mesa-confirmation.component';
 import { ListaPedidoMesaComponent } from './components/lista-pedido-mesa/lista-pedido-mesa.component';
+import { PagamentoMesaComponent } from './components/pagamento-mesa/pagamento-mesa.component';
 
 
 
@@ -39,7 +40,8 @@ import { ListaPedidoMesaComponent } from './components/lista-pedido-mesa/lista-p
     OrderMesaComponent,
     RevisaMesaComponent,
     OrderMesaConfirmationComponent,
-    ListaPedidoMesaComponent
+    ListaPedidoMesaComponent,
+    PagamentoMesaComponent
   ],
   imports: [
     CommonModule,
