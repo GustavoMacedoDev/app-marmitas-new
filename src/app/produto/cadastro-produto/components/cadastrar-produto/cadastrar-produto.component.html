@@ -1,0 +1,58 @@
+<form [formGroup]="form" fxLayoutAlign="center" novalidate>
+    <mat-list>
+      <mat-list-item>
+        <mat-form-field>
+          <input matInput placeholder="Nome"
+              formControlName="nome">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field>
+          <input matInput placeholder="Preço"
+              formControlName="preco">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <mat-select placeholder="Categorias" formControlName="categoria">
+            <mat-option   
+              *ngFor="let categoria of categorias" [value]="categoria.id">
+              {{ categoria?.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Restaurante</mat-label>
+          <mat-select placeholder="Restaurante" formControlName="restaurante">
+            <mat-option   
+              *ngFor="let restaurante of restaurantes" [value]="restaurante.id">
+              {{ restaurante?.razaoSocial }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Opção</mat-label>
+          <mat-select placeholder="Tipo" formControlName="opcao">
+            <mat-option   
+              *ngFor="let opcao of options" [value]="opcao.id">
+              {{ opcao?.opcao }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item fxLayoutAlign="center">
+        <button mat-raised-button color="primary"
+            [disabled]="form.invalid" (click)="cadastrarProduto()">
+            Cadastrar
+        </button>
+        &nbsp;
+        <a mat-raised-button routerLink="/login">Voltar</a>
+      </mat-list-item>
+    </mat-list>
+  </form>
+  

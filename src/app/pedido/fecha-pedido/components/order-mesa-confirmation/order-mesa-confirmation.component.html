@@ -1,0 +1,30 @@
+<h2 class="text-center">Lista de Mesa</h2>
+<div style="overflow-x:auto;">
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Mesa</th>
+      <th>Data</th>
+      <th>Imprimir</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <td>{{ pedido?.mesa.numeroMesa }}</td>
+      <td>{{ pedido?.instante }}</td>
+      <td>
+        <a class="btn btn-info" 
+          [routerLink]="['/lista-pedido-mesa/listar/'] + pedido?.idPedido ">
+          Ver
+        </a>
+      </td>
+      
+    </tr>
+
+    </tbody>
+  </table>
+</div>  
+<div>
+  <button class="btn btn-primary" [routerLink]="['/atendimento']">Novo Pedido</button>
+  <button class="btn btn-primary" [routerLink]="['/atendimento']">Voltar</button>
+</div>

@@ -1,0 +1,77 @@
+<section class="order">
+  <section class="">
+        <form [formGroup]="orderForm" novalidate>
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 class="page-header">
+                Cliente
+              </h3>
+            </div>
+          </div>
+          
+          <div class="form-row">
+          
+            <div class="form-group col-sm-12">
+              <select class="form-control" formControlName="cliente">
+                <option [selected]="true" value="">Selecione um cliente</option>
+                <option *ngFor="let cliente of clientes" 
+                  value="{{cliente.id}}">
+                    {{ cliente.nome }} 
+                </option>
+              </select>
+              
+            
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+              <p class="lead">Itens do Pedido:</p>
+            </div>
+            <div>
+              <app-order-items [items]="cartItems()"
+                    (increaseQty)="increaseQty($event)"
+                    (decreaseQty)="decreaseQty($event)"
+                    (remove)="remove($event)"></app-order-items>
+            </div>
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-sm-6 col-xs-12">
+              <p class="lead">Formas de Pagamento:</p>
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <select class="form-control" formControlName="formaPagamento">
+                    <option [selected]="true" value="">Selecione uma forma de pagamento</option>
+                    <option *ngFor="let pagamento of formasPagamento" value="{{pagamento.id}}">{{pagamento.formaPagamento}}</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6 col-xs-12">
+              <p class="lead">Entrega e Total:</p>
+
+              <app-delivery-costs
+                [itemsValue]="itemsValue()"></app-delivery-costs>
+            </div>
+            <!-- /.col -->
+          </div>
+
+        </form>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button (click)="checkOrder(orderForm.value)" class="btn btn-success pull-right"
+              >
+                <i class="fa fa-credit-card"></i> Concluir Pedido
+            </button>
+          </div>
+        </div>
+
+    </section>
+</section>

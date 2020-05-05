@@ -1,0 +1,21 @@
+<h2 class="text-center">Escolha uma opção</h2>
+<div class="options">
+    <button class="btn btn-primary btnadd">
+        BALCÃO
+    </button>
+    <button class="btn btn-primary btnadd" [routerLink]="['/restaurants/2/menu']">
+        ENTREGA
+    </button>
+    <button class="btn btn-primary btnadd" [routerLink]="['/lista-mesa']">
+        MESA
+    </button>
+</div>
+
+<hr>
+
+<section class="content">
+    <button class="btn btn-primary btOptions" [routerLink]="['/lista-clientes']">Clientes</button>
+    <button class="btn btn-primary btOptions" [routerLink]="['/lista-produto']">Produtos</button>
+    <button class="btn btn-primary btOptions" [routerLink]="['/order-confirmation']">Entregas</button>
+    <button class="btn btn-primary btOptions" [routerLink]="['/order-mesa-confirmation']">Mesas</button>
+  </section>

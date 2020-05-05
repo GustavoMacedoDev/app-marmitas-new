@@ -1,0 +1,20 @@
+<div class="content" #content>
+    <h3>Pedido {{ pedido?.instante }}</h3> 
+    <h3 class="text-center">Mesa {{ pedido?.mesa.numeroMesa }}</h3>
+    <div>
+        <h4>Produtos</h4>
+        <div *ngFor="let item of pedido?.itens">
+            <span><strong>{{ item.quantidade }}x Item: {{ item.produto.nome }} Valor: {{ item.preco  | currency: 'BRL': 'symbol'}}</strong></span>
+        </div>
+    </div>
+    
+    <div>
+        <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
+    </div>
+    <div class="footer">
+        <h2>MARMITESKE</h2>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="imprimir()" >Imprimir</button>
+<button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Voltar</button>
+<button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Pagar</button>
