@@ -6,23 +6,27 @@
       </button>
     </div>
     <div class="modal-body">
-        <ng-show>
-          
-        </ng-show>
+      {{ form.value | json }}
+      {{ form.valid }}
         <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
         <form [formGroup]="form" novalidate>
-        <div class="form-group col-sm-12">
-            <select class="form-control" formControlName="formaPagamento">
-              <option [selected]="true" value="">Selecione uma forma de pagamento</option>
-              <option *ngFor="let fpagamento of formaPagamentos" 
-                value="{{fpagamento.id}}">
-                  {{ fpagamento.formaPagamento }} 
-              </option>
-            </select>
-            
-          
+          <div class="form-group col-sm-12">
+          <select class="form-control" formControlName="fPagamento" [(ngModel)]="formaPagamento">
+            <option [selected]="true" value="">Selecione uma forma de pagamento</option>
+            <option *ngFor="let fPagamento of formaPagamentos"
+            value="{{ fPagamento.id }}">
+            {{ fPagamento.formaPagamento }}
+            </option>
+          </select>
           </div>
+          
+          <div class="troco" *ngIf="formaPagamento === '1'">
+            <label>Troco:</label> <br >
+            <input type="number" [(ngModel)]="troco" formControlName="troco">
+          </div>
+          <input type="number" [(ngModel)]="total" *ngIf="form.valid">
           </form>
+
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>

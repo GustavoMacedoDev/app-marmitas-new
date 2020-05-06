@@ -22,7 +22,8 @@ export class ListaPedidoMesaComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
   formaPagamentos: FormaPagamento[];
   form: FormGroup;
-
+  formaPagamento: any;
+  trocoInput: number;
   constructor(
               private pedidoService: PedidoService,
               private formaPagamentoService: FormaPagamentoService,
@@ -45,7 +46,8 @@ export class ListaPedidoMesaComponent implements OnInit {
 
   gerarForm() {
     this.form = new FormGroup({
-      formaPagamento: this.formBuilder.control('', [Validators.required])
+      fPagamento: this.formBuilder.control('', [Validators.required]),
+      troco: this.formBuilder.control('', [Validators.required])
     })
   }
 
