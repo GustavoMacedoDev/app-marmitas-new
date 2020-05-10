@@ -6,35 +6,55 @@
       </button>
     </div>
     <div class="modal-body">
-      {{ form.value | json }}
-      {{ form.valid }}
-        <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
-        <form [formGroup]="form" novalidate>
-          
-          <div class="form-group col-sm-12">
-          <select class="form-control" formControlName="fPagamento" [(ngModel)]="formaPagamento">
-            <option [selected]="true" value="">Selecione uma forma de pagamento</option>
-            <option *ngFor="let fPagamento of formaPagamentos"
-            value="{{ fPagamento.id }}">
-            {{ fPagamento.formaPagamento }}
-            </option>
-          </select>
-          </div>
-          <div *ngIf="formaPagamento">
-            <label>Valor pago:</label> <br >
-            <input type="number" formControlName="valorPago">
 
-          </div>
-          <div class="troco" *ngIf="formaPagamento === '1'">
-            <label>Troco para:</label> <br >
-            <input type="number" [(ngModel)]="trocoInput" formControlName="troco">
-          </div>
-          <div *ngIf="form.valid">
-            <label>Valor de Troco</label> <br >
-            <h1>{{trocoInput - pedido?.totalPedido }} </h1>
-          </div>
+      <div *ngIf="pagamentos">
+        <h4 class="text-center">Pagamentos</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Valor</th>
+              <th>Forma de Pagamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of pagamentos">
+              <td>{{ p.valorPago | currency: 'BRL': 'symbol' }}</td>
+              <td>{{ p.formaPagamento.formaPagamento }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+        <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
+        <div>
+          <form [formGroup]="form" novalidate>
+            <div class="form-group col-sm-12">
+              <select class="form-control" formControlName="fPagamento" [(ngModel)]="formaPagamento">
+                <option [selected]="true" value="">Selecione uma forma de pagamento</option>
+                <option *ngFor="let fPagamento of formaPagamentos"
+                value="{{ fPagamento.id }}">
+                {{ fPagamento.formaPagamento }}
+                </option>
+              </select>
+              </div>
+              <div *ngIf="formaPagamento">
+                <label>Valor pago:</label> <br >
+                <input type="number" formControlName="valorPago">
+    
+              </div>
+              <div class="troco" *ngIf="formaPagamento === '1'">
+                <label>Troco para:</label> <br >
+                <input type="number" [(ngModel)]="trocoInput" formControlName="troco">
+              </div>
+              <div *ngIf="form.valid">
+                <label>Valor de Troco</label> <br >
+                <h1>{{trocoInput - pedido?.totalPedido }} </h1>
+              </div>
             
+              
           </form>
+        </div>
+        
 
     </div>
     <div class="modal-footer">
@@ -59,6 +79,7 @@
         <h2>MARMITESKE</h2>
     </div>
 </div>
+
 <button class="btn btn-primary" (click)="imprimir()" >Imprimir</button>
 <button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Voltar</button>
 <button class="btadd btn btn-primary" (click)="open(content)">Pagar</button>

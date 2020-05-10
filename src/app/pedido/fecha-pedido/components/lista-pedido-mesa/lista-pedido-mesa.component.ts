@@ -23,12 +23,12 @@ export class ListaPedidoMesaComponent implements OnInit {
   pedido: ListaPedido;
   dados: any;
   @ViewChild('content') content: ElementRef;
-  formaPagamentos: FormaPagamento[];
   form: FormGroup;
-  formaPagamento: any;
-  trocoInput: number;
-  totalInput: number;
   mesa: MesaDto;
+  formaPagamentos: FormaPagamento[];
+  pagamentos: Pagamento[];
+  trocoInput: number;
+  formaPagamento: any;
 
   constructor(
               private pedidoService: PedidoService,
@@ -46,22 +46,25 @@ export class ListaPedidoMesaComponent implements OnInit {
   ngOnInit(): void {
     this.gerarForm();
     this.pedidoService.listaPedidoById(this.route.snapshot.params['id'])
-    .subscribe(res => this.pedido = res);
-    this.formaPagamentoService.listarFormasPagamento().subscribe(res => this.formaPagamentos = res);
+      .subscribe(res => this.pedido = res);
+    this.formaPagamentoService.listarFormasPagamento()
+      .subscribe(res => this.formaPagamentos = res);
+    
   }
 
   gerarForm() {
     this.form = new FormGroup({
       fPagamento: this.formBuilder.control('', [Validators.required]),
-      valorPago: this.formBuilder.control(''),
-      troco: this.formBuilder.control('', [Validators.required]),
-      total: this.formBuilder.control('')
+      valorPago: this.formBuilder.control('', [Validators.required]),
+      troco: this.formBuilder.control('', [Validators.required])
     })
   }
 
   open(content) {
     this.modalService.open(content);
+    this.pagamentoService.findPagamentosByIdMesa(this.pedido.mesa.id).subscribe(res => this.pagamentos = res);
   }
+
 
   imprimir(){
     let doc = new jsPdf();
