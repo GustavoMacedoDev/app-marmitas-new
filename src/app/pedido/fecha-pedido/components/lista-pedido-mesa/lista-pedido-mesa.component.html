@@ -1,86 +1,93 @@
 <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Mesa {{ pedido?.mesa.numeroMesa }}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Mesa {{ pedido?.mesa.numeroMesa }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
 
-      <div *ngIf="pagamentos">
-        <h4 class="text-center">Pagamentos</h4>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Valor</th>
-              <th>Forma de Pagamento</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let p of pagamentos">
-              <td>{{ p.valorPago | currency: 'BRL': 'symbol' }}</td>
-              <td>{{ p.formaPagamento.formaPagamento }}</td>
-            </tr>
-          </tbody>
-        </table>
-        
+    <div *ngIf="pagamentos">
+      <h4 class="text-center">Pagamentos</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Valor</th>
+            <th>Forma de Pagamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of pagamentos">
+            <td>{{ p.valorPago | currency: 'BRL': 'symbol' }}</td>
+            <td>{{ p.formaPagamento.formaPagamento }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+      <div>
+        <h4>Total em aberto: {{ pedido?.valorEmAberto | currency: 'BRL': 'symbol' }}</h4>
+        <h4>Total da Mesa: {{ pedido?.mesa.totalMesa | currency: 'BRL': 'symbol' }}</h4>
       </div>
-        <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
-        <div>
-          <form [formGroup]="form" novalidate>
-            <div class="form-group col-sm-12">
-              <select class="form-control" formControlName="fPagamento" [(ngModel)]="formaPagamento">
-                <option [selected]="true" value="">Selecione uma forma de pagamento</option>
-                <option *ngFor="let fPagamento of formaPagamentos"
-                value="{{ fPagamento.id }}">
-                {{ fPagamento.formaPagamento }}
-                </option>
-              </select>
-              </div>
-              <div *ngIf="formaPagamento">
-                <label>Valor pago:</label> <br >
-                <input type="number" formControlName="valorPago">
-    
-              </div>
-              <div class="troco" *ngIf="formaPagamento === '1'">
-                <label>Troco para:</label> <br >
-                <input type="number" [(ngModel)]="trocoInput" formControlName="troco">
-              </div>
-              <div *ngIf="form.valid">
-                <label>Valor de Troco</label> <br >
-                <h1>{{trocoInput - pedido?.totalPedido }} </h1>
-              </div>
+      
+      <div *ngIf="!pedido?.valorEmAberto == '0'">
+        <form [formGroup]="form" novalidate>
+          <div class="form-group col-sm-12">
+            <select class="form-control" formControlName="fPagamento" [(ngModel)]="formaPagamento">
+              <option [selected]="true" value="">Selecione uma forma de pagamento</option>
+              <option *ngFor="let fPagamento of formaPagamentos"
+              value="{{ fPagamento.id }}">
+              {{ fPagamento.formaPagamento }}
+              </option>
+            </select>
+            </div>
+            <div *ngIf="formaPagamento">
+              <label>Valor pago:</label> <br >
+              <input type="number" formControlName="valorPago" [(ngModel)]="valorPagoInput">
+  
+            </div>
+            <div class="troco" *ngIf="formaPagamento === '1'">
+              <label>Troco para:</label> <br >
+              <input type="number" [(ngModel)]="trocoInput" formControlName="troco">
+            </div>
+            <div *ngIf="form.valid">
+              <label>Valor de Troco</label> <br >
+              <h1>{{trocoInput - valorPagoInput | currency: 'BRL': 'symbol' }} </h1>
+            </div>
+          
             
-              
-          </form>
-        </div>
-        
+        </form>
+      </div>
+      
 
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>
-    </div>
-  </ng-template>
+  </div>
+  <div class="modal-footer" *ngIf="!pedido?.valorEmAberto == '0'">
+    <button type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>
+  </div>
+</ng-template>
 
-<div class="content" #content>
-    <h3>Pedido {{ pedido?.instante }}</h3> 
-    <h3 class="text-center">Mesa {{ pedido?.mesa.numeroMesa }}</h3>
-    <div>
-        <h4>Produtos</h4>
-        <div *ngFor="let item of pedido?.itens">
-            <span><strong>{{ item.quantidade }}x Item: {{ item.produto.nome }} Valor: {{ item.preco  | currency: 'BRL': 'symbol'}}</strong></span>
-        </div>
-    </div>
-    
-    <div>
-        <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
-    </div>
-    <div class="footer">
-        <h2>MARMITESKE</h2>
-    </div>
+<div class="report" #report>
+<div>
+  <h3>Pedido {{ pedido?.instante | date:'dd/MM/yyyy HH:mm:ss' }}</h3>
+  <h3 class="text-center">Mesa {{ pedido?.mesa.numeroMesa }}</h3> 
+  <div>
+      <h4>Produtos</h4>
+      <div *ngFor="let item of pedido?.itens">
+          <span><strong>{{ item.quantidade }}x Item: {{ item.produto.nome }} Valor: {{ item.preco  | currency: 'BRL': 'symbol'}}</strong></span>
+      </div>
+  </div>
+  
+  <div>
+      <h2>Total: {{ pedido?.mesa.totalMesa | currency: 'BRL': 'symbol' }}</h2>
+  </div>
+  <div class="footer">
+      <h2>MARMITESKE</h2>
+  </div>
+</div>  
+
 </div>
 
 <button class="btn btn-primary" (click)="imprimir()" >Imprimir</button>
 <button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Voltar</button>
-<button class="btadd btn btn-primary" (click)="open(content)">Pagar</button>
+<button class="btadd btn btn-primary" (click)="open(content)">Pagamento</button>
 

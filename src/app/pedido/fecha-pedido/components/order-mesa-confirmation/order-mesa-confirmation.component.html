@@ -14,7 +14,7 @@
       <td>{{ pedido?.instante }}</td>
       <td>
         <a class="btn btn-info" 
-          [routerLink]="['/lista-pedido-mesa/listar/'] + pedido?.idPedido ">
+          [routerLink]="['/lista-pedido-mesa/listar/'] + pedido?.mesa.id ">
           Ver
         </a>
       </td>

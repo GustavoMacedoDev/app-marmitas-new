@@ -12,7 +12,8 @@ import { ListaPedido } from '../interfaces/lista-pedido.dto';
 export class PedidoService {
 
   private readonly PATH: string = 'api/pedido/';
-  private readonly PATHMESA: string = 'api/pedidoMesa/';
+  private readonly PATHMESA: string = 'api/pedidoOpcao/';
+  private readonly PATHMESAID: string = 'api/pedidosMesa/';
 
   constructor(public httpClient: HttpClient,
      public httpUtil: HttpUtilService) { }
@@ -21,9 +22,14 @@ export class PedidoService {
        return this.httpClient.get(env.baseUrl + this.PATH, this.httpUtil.headers());
      }
 
-     listaPedidoById(id: number): Observable<any> {
+     /*listaPedidoById(id: number): Observable<any> {
        return this.httpClient.get(
          env.baseUrl + this.PATH + id, this.httpUtil.headers());
+     }*/
+
+     listaPedidoByIdMesa(id: number): Observable<any> {
+      return this.httpClient.get(
+        env.baseUrl + this.PATHMESAID + id, this.httpUtil.headers());
      }
 
      listarPedidosPorOpcao(id: number): Observable<any> {
