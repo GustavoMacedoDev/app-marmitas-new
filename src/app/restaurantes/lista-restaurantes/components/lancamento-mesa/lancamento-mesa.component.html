@@ -1,7 +1,7 @@
 <h3 class="text-center">
     Voce está na Mesa: {{ mesa?.numeroMesa }}
 </h3>
-
+<button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Voltar</button>
 <h4 class="text-center">Faça seu pedido:</h4>
 <button *ngFor="let produto of produtos" 
         class="btnadd btn btn-primary" (click)="addItem(produto, mesa?.id)">

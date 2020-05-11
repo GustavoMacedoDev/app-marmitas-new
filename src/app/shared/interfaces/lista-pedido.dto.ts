@@ -12,4 +12,5 @@ export interface ListaPedido {
     totalPedido: number;
     mesa: MesaDto;
     valorEmAberto: number;
+    valorTotalPedido: number;
 }
