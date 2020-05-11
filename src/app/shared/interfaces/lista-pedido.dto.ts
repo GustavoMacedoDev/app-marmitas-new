@@ -11,4 +11,5 @@ export interface ListaPedido {
     formaPagamento: FormaPagamento;
     totalPedido: number;
     mesa: MesaDto;
+    valorEmAberto: number;
 }
