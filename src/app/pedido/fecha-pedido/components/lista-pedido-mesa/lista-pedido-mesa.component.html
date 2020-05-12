@@ -87,10 +87,11 @@
       <h2>MARMITESKE</h2>
   </div>
 </div>  
+</div>
 <button class="btn btn-primary" (click)="imprimir()" >Imprimir</button>
 <button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Voltar</button>
 <button class="btadd btn btn-primary" (click)="open(content)">Pagamento</button>
-</div>
+
 
 <div *ngIf="!pedido">
   <h3 class="text-center">A mesa está vazia!!</h3>

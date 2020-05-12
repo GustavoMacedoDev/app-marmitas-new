@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoDto } from 'src/app/shared';
 import { ProdutoService } from 'src/app/shared/services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Produto } from 'src/app/shared/models/produto.dto';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editar-produto',
@@ -19,7 +20,11 @@ export class EditarProdutoComponent implements OnInit {
   constructor(
               private produtoService: ProdutoService, 
               private router: ActivatedRoute,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private route: Router,
+              private snackBar: MatSnackBar,
+
+              ) { }
 
   ngOnInit(): void {
     this.produtoId = this.router.snapshot.params['id'];
@@ -42,6 +47,9 @@ export class EditarProdutoComponent implements OnInit {
 
   salvar() {
     this.produtoService.atualizaProduto(this.produto).subscribe();
+    const msg: string = "Produto alterado com sucesso";
+          this.snackBar.open(msg, "Sucesso", { duration: 5000 });
+          this.route.navigate(['/lista-produto']);
   }
 
 
