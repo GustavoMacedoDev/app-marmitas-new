@@ -6,7 +6,7 @@ import { ListarProdutoComponent } from './components/listar-produto/listar-produ
 import { EditarProdutoComponent } from './components/editar-produto/editar-produto.component';
 
 
-export const CadastroPfRoutes: Routes = [
+export const CadastroProdutoRoutes: Routes = [
 	{
 		path: 'cadastro-produto',
 		component: CadastroProdutoComponent,
@@ -27,7 +27,7 @@ export const CadastroPfRoutes: Routes = [
 
 @NgModule({
   imports: [
-  	RouterModule.forChild(CadastroPfRoutes)
+  	RouterModule.forChild(CadastroProdutoRoutes)
   ],
   exports: [
     RouterModule

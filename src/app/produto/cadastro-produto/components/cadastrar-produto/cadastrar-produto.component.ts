@@ -56,7 +56,7 @@ export class CadastrarProdutoComponent implements OnInit {
     }
 
     const produto: ProdutoDto = this.form.value;
-    console.log(this.form.value);
+    
     this.produtoService.cadastrar(produto)
       .subscribe(
         data => {

@@ -26,6 +26,8 @@ import { MesaModule } from './mesa/mesa/mesa.module';
 import { MesaRoutingModule } from './mesa/mesa/mesa.routing';
 import { TaxaEntregaModule } from './pedido/taxa-entrega/taxa-entrega.module';
 import { TaxaEntregaRoutingModule } from './pedido/taxa-entrega/taxa-entrega.routing';
+import { CategoriaRoutingModule } from './categoria/categoria/categoria.routing';
+import { CategoriaModule } from './categoria/categoria/categoria.module';
 
 registerLocaleData(localePtBr);
 
@@ -60,6 +62,8 @@ registerLocaleData(localePtBr);
     MesaRoutingModule,
     TaxaEntregaModule,
     TaxaEntregaRoutingModule,
+    CategoriaModule,
+    CategoriaRoutingModule,
     
     AppRoutingModule
   ],
