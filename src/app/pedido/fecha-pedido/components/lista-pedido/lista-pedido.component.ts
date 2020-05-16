@@ -21,7 +21,7 @@ export class ListaPedidoComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    this.pedidoService.listarPedidosPorOpcao(this.route.snapshot.params['id'])
+    this.pedidoService.listaPedidoById(this.route.snapshot.params['id'])
     .subscribe(res => this.pedido = res);
   }
 

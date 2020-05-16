@@ -17,7 +17,7 @@
           <mat-label>Categoria</mat-label>
           <mat-select placeholder="Categorias" formControlName="categoria">
             <mat-option   
-              *ngFor="let categoria of categorias" [value]="categoria.id">
+              *ngFor="let categoria of categorias" [value]="categoria">
               {{ categoria?.nome }}
             </mat-option>
           </mat-select>
@@ -28,7 +28,7 @@
           <mat-label>Restaurante</mat-label>
           <mat-select placeholder="Restaurante" formControlName="restaurante">
             <mat-option   
-              *ngFor="let restaurante of restaurantes" [value]="restaurante.id">
+              *ngFor="let restaurante of restaurantes" [value]="restaurante">
               {{ restaurante?.razaoSocial }}
             </mat-option>
           </mat-select>
@@ -39,7 +39,7 @@
           <mat-label>Opção</mat-label>
           <mat-select placeholder="Tipo" formControlName="opcao">
             <mat-option   
-              *ngFor="let opcao of options" [value]="opcao.id">
+              *ngFor="let opcao of options" [value]="opcao">
               {{ opcao?.opcao }}
             </mat-option>
           </mat-select>
@@ -51,7 +51,7 @@
             Cadastrar
         </button>
         &nbsp;
-        <a mat-raised-button routerLink="/login">Voltar</a>
+        <a mat-raised-button routerLink="/lista-produto">Voltar</a>
       </mat-list-item>
     </mat-list>
   </form>

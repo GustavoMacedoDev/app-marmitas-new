@@ -22,10 +22,10 @@ export class PedidoService {
        return this.httpClient.get(env.baseUrl + this.PATH, this.httpUtil.headers());
      }
 
-     /*listaPedidoById(id: number): Observable<any> {
+     listaPedidoById(id): Observable<any> {
        return this.httpClient.get(
          env.baseUrl + this.PATH + id, this.httpUtil.headers());
-     }*/
+     }
 
      listaPedidoByIdMesa(id: number): Observable<any> {
       return this.httpClient.get(

@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/shared/models/cart-item.model';
-import { Order, OrderItem } from 'src/app/shared/models/order.model';
-import { RadioOption } from 'src/app/shared/radio/radio-option.model';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
 import { MatSelect } from '@angular/material/select';
@@ -26,6 +24,11 @@ export class OrderComponent implements OnInit {
   cliente: Cliente;
   @ViewChild(MatSelect) matSelect: MatSelect;
   pedido: PedidoDto;
+  
+  trocoInput: number;
+  valorPagoInput: number;
+  valorPg: number;
+  fPagamento: any;
 
   formasPagamento: FormaPagamento[];
 
@@ -33,30 +36,23 @@ export class OrderComponent implements OnInit {
               private router: Router,
               private formBuilder: FormBuilder,
               private clienteService: ClienteService,
-              private formaPagamentoService: FormaPagamentoService,
-              private fb: FormBuilder) { }
+              private formaPagamentoService: FormaPagamentoService) { }
 
   ngOnInit() {
     this.listarClientes();
     this.listarFormasPagamento();
-    this.orderForm = new FormGroup({
-      cliente: this.formBuilder.control('', [Validators.required]),
-      formaPagamento: this.formBuilder.control('', [Validators.required])
-    }, {validators: [OrderComponent.equalsTo], updateOn: 'blur'});
+    this.gerarForm();
       
   }
 
-  static equalsTo(group: AbstractControl): {[key:string]: boolean} {
-    const email = group.get('email')
-    const emailConfirmation = group.get('emailConfirmation')
-    if(!email || !emailConfirmation){
-      return undefined
-    }
-    if(email.value !== emailConfirmation.value){
-      return {emailsNotMatch:true}
-    }
-    return undefined
+  gerarForm() {
+    this.orderForm = new FormGroup({
+      cliente: this.formBuilder.control('', [Validators.required]),
+      formaPagamento: this.formBuilder.control('', [Validators.required]),
+      troco: this.formBuilder.control('', [Validators.required])
+    })
   }
+
 
   itemsValue(): number {
     return this.orderService.itemsValue()
@@ -87,7 +83,7 @@ export class OrderComponent implements OnInit {
       .map(x => {return {quantidade: x.quantidade, produto: {id: x.menuItem.id}}});
 
     this.orderService.checkOrder(pedido)
-      .subscribe( (orderId: string) => {
+      .subscribe( () => {
         this.router.navigate(['/order-confirmation'])
         this.orderService.clear()
     })

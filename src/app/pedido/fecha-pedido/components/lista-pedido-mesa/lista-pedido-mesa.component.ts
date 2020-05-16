@@ -11,6 +11,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Pagamento } from 'src/app/shared/interfaces/pagamento.dto';
 import { MesaDto } from 'src/app/shared/interfaces/mesa.dto';
 import { PagamentoService } from 'src/app/shared/services/pagamento.service';
+import { Cliente } from 'src/app/shared/models/cliente.model';
+import { ClienteService } from 'src/app/shared/services/cliente.service';
 
 @Component({
   selector: 'app-lista-pedido-mesa',
@@ -27,6 +29,7 @@ export class ListaPedidoMesaComponent implements OnInit {
   mesa: MesaDto;
   formaPagamentos: FormaPagamento[];
   pagamentos: Pagamento[];
+  clientes: Cliente[];
   trocoInput: number;
   valorPagoInput: number;
   formaPagamento: any;
@@ -40,7 +43,8 @@ export class ListaPedidoMesaComponent implements OnInit {
               private router: Router,
               private formBuilder: FormBuilder,
               config: NgbModalConfig, 
-              private modalService: NgbModal
+              private modalService: NgbModal,
+              private clienteService: ClienteService
               ) { 
                 config.backdrop = 'static';
                 config.keyboard = false;
@@ -52,6 +56,8 @@ export class ListaPedidoMesaComponent implements OnInit {
       .subscribe(res => this.pedido = res);
     this.formaPagamentoService.listarFormasPagamento()
       .subscribe(res => this.formaPagamentos = res);
+    this.pagamentoService.findPagamentosByIdMesa(this.route.snapshot.params['id'])
+      .subscribe(res => this.pagamentos = res);
     
   }
 
@@ -59,7 +65,8 @@ export class ListaPedidoMesaComponent implements OnInit {
     this.form = new FormGroup({
       fPagamento: this.formBuilder.control('', [Validators.required]),
       valorPago: this.formBuilder.control('', [Validators.required]),
-      troco: this.formBuilder.control('', [Validators.required])
+      troco: this.formBuilder.control('', [Validators.required]),
+      cliente: this.formBuilder.control('')
     })
   }
 
@@ -67,6 +74,7 @@ export class ListaPedidoMesaComponent implements OnInit {
     this.modalService.open(content);
     this.pagamentoService.findPagamentosByIdMesa(this.route.snapshot.params['id'])
       .subscribe(res => this.pagamentos = res);
+    this.clienteService.listarClientes().subscribe(res => this.clientes = res);
   }
 
   
@@ -93,6 +101,8 @@ export class ListaPedidoMesaComponent implements OnInit {
 
   salvar() {
     const pagamento: Pagamento = this.form.value;
+    console.log("form" + this.form.value);
+
     pagamento.mesa = this.pedido.mesa;
     console.log(pagamento);
 

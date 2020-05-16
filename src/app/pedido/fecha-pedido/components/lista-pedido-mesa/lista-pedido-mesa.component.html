@@ -50,11 +50,23 @@
               <label>Troco para:</label> <br >
               <input type="number" [(ngModel)]="trocoInput" formControlName="troco">
             </div>
+
             <div *ngIf="form.valid">
               <label>Valor de Troco</label> <br >
               <h1>{{trocoInput - valorPagoInput | currency: 'BRL': 'symbol' }} </h1>
             </div>
           
+            <div *ngIf="formaPagamento === '5'">
+              <div class="form-group col-sm-12">
+                <select class="form-control" formControlName="cliente">
+                  <option [selected]="true" value="">Selecione um cliente</option>
+                  <option *ngFor="let cliente of clientes"
+                  [value]="cliente.id">
+                  {{ cliente?.nome }}
+                  </option>
+                </select>
+                </div>
+            </div>
             
         </form>
       </div>
@@ -96,4 +108,30 @@
 <div *ngIf="!pedido">
   <h3 class="text-center">A mesa está vazia!!</h3>
   <button class="btadd btn btn-primary" [routerLink]="['/order-mesa-confirmation']">Voltar</button>
+</div>
+
+<hr>
+
+<div>
+  <h4 class="text-center">Pagamentos</h4>
+  <div *ngIf="!pagamentos?.length">
+      <h5 class="text-center">Nenhum pagamento ainda.</h5>
+  </div>
+  <table class="table table-striped" *ngIf="pagamentos?.length">
+    <thead>
+      <tr>
+        <th>Valor</th>
+        <th>Forma de Pagamento</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pagamentos">
+        <td>{{ p.valorPago | currency: 'BRL': 'symbol' }}</td>
+        <td>{{ p.formaPagamento.formaPagamento }}</td>
+        <td>{{ p.instante }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
 </div>
