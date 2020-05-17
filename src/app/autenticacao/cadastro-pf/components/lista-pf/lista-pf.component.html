@@ -11,7 +11,7 @@
     <tbody>
         <tr *ngFor="let cliente of clientes">
             <td>{{ cliente?.nome }}</td>
-            <td>{{ cliente?.telefone }}</td>
+            <td>{{ cliente?.telefone | phone }}</td>
             <td><button class="btn btn-primary">Editar</button></td>
         </tr>
     </tbody>

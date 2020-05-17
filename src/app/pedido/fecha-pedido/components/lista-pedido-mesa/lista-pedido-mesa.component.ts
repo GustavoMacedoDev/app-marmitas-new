@@ -58,23 +58,25 @@ export class ListaPedidoMesaComponent implements OnInit {
       .subscribe(res => this.formaPagamentos = res);
     this.pagamentoService.findPagamentosByIdMesa(this.route.snapshot.params['id'])
       .subscribe(res => this.pagamentos = res);
+      this.clienteService.listarClientes().subscribe(res => this.clientes = res);
     
   }
 
   gerarForm() {
-    this.form = new FormGroup({
+    this.form = this.formBuilder.group({
+  		cliente: ['', [Validators.required]],
       fPagamento: this.formBuilder.control('', [Validators.required]),
       valorPago: this.formBuilder.control('', [Validators.required]),
-      troco: this.formBuilder.control('', [Validators.required]),
-      cliente: this.formBuilder.control('')
-    })
+      troco: this.formBuilder.control('', [Validators.required])
+  	});
   }
 
   open(content) {
     this.modalService.open(content);
     this.pagamentoService.findPagamentosByIdMesa(this.route.snapshot.params['id'])
       .subscribe(res => this.pagamentos = res);
-    this.clienteService.listarClientes().subscribe(res => this.clientes = res);
+    
+    
   }
 
   

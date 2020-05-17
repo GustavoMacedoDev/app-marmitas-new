@@ -11,13 +11,14 @@ import { PhonePipe } from './pipes/phone.pipe';
   declarations: [
     MascaraDirective,
     RadioComponent,
-    InputComponent
+    InputComponent,
+    PhonePipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    MascaraDirective, RadioComponent, InputComponent
+    MascaraDirective, RadioComponent, InputComponent, PhonePipe
   ],
   providers: [ShoppingCartService, ClienteService]
 })

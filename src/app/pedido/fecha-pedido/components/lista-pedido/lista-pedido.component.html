@@ -2,7 +2,7 @@
     <h3>Pedido {{ pedido?.instante }}</h3> 
     <span class="text-center">#{{ pedido?.idPedido }}#</span><br>
     <span><strong>Cliente:</strong> {{ pedido?.cliente.nome }}</span><br>
-    <span><strong>Telefone:</strong> {{ pedido?.cliente.telefone }}</span><br>
+    <span><strong>Telefone:</strong> {{ pedido?.cliente.telefone | phone }}</span><br>
     <div *ngFor="let end of pedido?.cliente.enderecos">
         <span><strong>Endereço:</strong> {{ end?.logradouro }} , {{ end?.numero}}, {{ end?.bairro }}, {{end?.complemento }}</span>
     </div>
@@ -15,6 +15,8 @@
     
     <div>
         <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
+        <h5>Troco para : {{ pedido?.valorPago | currency: 'BRL': 'symbol' }}</h5>
+        <h5>Valor de troco : {{ pedido?.valorPago  - pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h5>
     </div>
     <h4><strong>Forma de Pagamento:</strong>  {{ pedido?.formaPagamento.formaPagamento }}</h4>
     <div class="footer">

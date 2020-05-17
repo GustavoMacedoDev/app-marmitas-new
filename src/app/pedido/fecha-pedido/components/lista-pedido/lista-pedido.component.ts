@@ -23,6 +23,12 @@ export class ListaPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.pedidoService.listaPedidoById(this.route.snapshot.params['id'])
     .subscribe(res => this.pedido = res);
+    this.itensPedido();
+  }
+
+
+  itensPedido() {
+    
   }
 
   imprimir(){

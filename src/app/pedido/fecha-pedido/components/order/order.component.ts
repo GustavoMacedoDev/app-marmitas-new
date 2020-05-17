@@ -9,6 +9,7 @@ import { MatSelect } from '@angular/material/select';
 import { FormaPagamento } from 'src/app/shared/models/forma-pagamento.model';
 import { FormaPagamentoService } from 'src/app/shared/services/forma-pagamento.service';
 import { PedidoDto } from 'src/app/shared';
+import { OpcaoAtendimento } from 'src/app/shared/interfaces/opcao-atendimento.dto';
 
 @Component({
   selector: 'app-order',
@@ -17,14 +18,11 @@ import { PedidoDto } from 'src/app/shared';
 })
 export class OrderComponent implements OnInit {
   orderForm: FormGroup;
-  myControl = new FormControl();
-  delivery: number = 0;
-  clienteId: string;
   clientes: Cliente[];
   cliente: Cliente;
   @ViewChild(MatSelect) matSelect: MatSelect;
   pedido: PedidoDto;
-  
+  opcaoAtendimento: OpcaoAtendimento;
   trocoInput: number;
   valorPagoInput: number;
   valorPg: number;
@@ -46,11 +44,11 @@ export class OrderComponent implements OnInit {
   }
 
   gerarForm() {
-    this.orderForm = new FormGroup({
-      cliente: this.formBuilder.control('', [Validators.required]),
+    this.orderForm = this.formBuilder.group({
+  		cliente: ['', [Validators.required]],
       formaPagamento: this.formBuilder.control('', [Validators.required]),
-      troco: this.formBuilder.control('', [Validators.required])
-    })
+      valorPago: this.formBuilder.control('', [Validators.required])
+  	});
   }
 
 
@@ -81,7 +79,8 @@ export class OrderComponent implements OnInit {
   checkOrder(pedido: PedidoDto){
     pedido.itens = this.cartItems()
       .map(x => {return {quantidade: x.quantidade, produto: {id: x.menuItem.id}}});
-
+    pedido.totalPedido = this.itemsValue();
+   
     this.orderService.checkOrder(pedido)
       .subscribe( () => {
         this.router.navigate(['/order-confirmation'])

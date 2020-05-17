@@ -1,26 +1,28 @@
 <section class="order">
-  <section class="">
         <form [formGroup]="orderForm" novalidate>
           <div class="row">
             <div class="col-sm-12">
               <h3 class="page-header">
-                Cliente
+                Revise o Pedido de Entrega
               </h3>
             </div>
           </div>
           
           <div class="form-row">
-          
             <div class="form-group col-sm-12">
-              <select class="form-control" formControlName="cliente">
-                <option [selected]="true" value="">Selecione um cliente</option>
-                <option *ngFor="let cliente of clientes" 
-                  value="{{cliente.id}}">
-                    {{ cliente.nome }} 
-                </option>
-              </select>
-              
-            
+              <mat-list>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Cliente</mat-label>
+                    <mat-select placeholder="Cliente" formControlName="cliente">
+                      <mat-option   
+                        *ngFor="let cliente of clientes" [value]="cliente">
+                        {{ cliente?.nome }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </mat-list>
             </div>
           </div>
           
@@ -35,44 +37,44 @@
                     (remove)="remove($event)"></app-order-items>
             </div>
           </div>
-          <!-- /.row -->
 
-          {{ orderForm.value | json }}
-
-            <div>
-                <div class="form-group col-sm-12">
-                  <h4>Forma de Pagamento</h4>
-                  <select class="form-control" formControlName="formaPagamento" [(ngModel)]="fPagamento">
-                    <option [selected]="true" value="">Selecione uma forma de pagamento</option>
-                    <option *ngFor="let fPagamento of formasPagamento"
-                      value="{{ fPagamento.id }}">
-                      {{ fPagamento.formaPagamento }}
-                    </option>
-                  </select>
-                  </div>
-                  
-                  <div class="form-group col-sm-12" *ngIf="fPagamento === '1'">
-                    <label>Troco para:</label> <br >
-                    <input type="number" [(ngModel)]="trocoInput" formControlName="troco">
-                  </div>
-      
-                  <div *ngIf="orderForm.valid">
-                    <label>Valor de Troco</label> <br >
-                    <h1>{{trocoInput - itemsValue() | currency: 'BRL': 'symbol' }} </h1>
-                  </div>
-                
+          <div class="form-group col-sm-12">
+            <h4>Forma de Pagamento</h4>
+            <div class="form-group col-sm-12">
+              <mat-list>
+                <mat-list-item>
+                  <mat-form-field>
+                    <mat-label>Forma de Pagamento</mat-label>
+                    <mat-select placeholder="Pagamento" formControlName="formaPagamento" [(ngModel)]="fPagamento">
+                      <mat-option   
+                        *ngFor="let fp of formasPagamento" [value]="fp" >
+                        {{ fp?.formaPagamento }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </mat-list>
             </div>
-            <!-- /.col -->
+            
+            <div class="form-group col-sm-12" *ngIf="fPagamento?.id == '1'">
+              <label>Troco para:</label> <br >
+              <input type="number" [(ngModel)]="trocoInput" formControlName="valorPago">
+            </div>
+  
+            <div *ngIf="orderForm.valid">
+              <label>Valor de Troco</label> <br >
+              <h1>{{trocoInput - itemsValue() | currency: 'BRL': 'symbol' }} </h1>
+            </div>
+            
+          </div>
             <div class="col-sm-6 col-xs-12">
               <p class="lead">Entrega e Total:</p>
 
               <app-delivery-costs
                 [itemsValue]="itemsValue()"></app-delivery-costs>
             </div>
-            <!-- /.col -->
 
         </form>
-
         <div class="row">
           <div class="col-xs-12">
             <button (click)="checkOrder(orderForm.value)" class="btn btn-success pull-right"
@@ -82,5 +84,4 @@
           </div>
         </div>
 
-    </section>
 </section>

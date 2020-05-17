@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { CpfValidator, CnpjValidator } from 'src/app/shared/validators';
 import { CadastroPf } from 'src/app/shared/models/cadastro-pf.model';
 import { CadastrarPfService } from 'src/app/shared/services/cadastrar-pf.service';
 

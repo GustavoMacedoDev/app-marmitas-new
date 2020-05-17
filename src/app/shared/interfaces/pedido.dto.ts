@@ -11,4 +11,6 @@ export interface PedidoDto {
     itens: ItemPedidoDto[];
     mesa: MesaDto;
     opAtendimento: OpcaoAtendimento;
+    totalPedido: number;
+    valorPago: number;
 }

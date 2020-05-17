@@ -16,6 +16,7 @@ import { CadastroPfComponent } from './components/cadastro-pf.component';
 import { ListaPfComponent } from './components/lista-pf/lista-pf.component';
 import { PhonePipe } from 'src/app/shared/pipes/phone.pipe';
 import { EditaPfComponent } from './components/edita-pf/edita-pf.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { EditaPfComponent } from './components/edita-pf/edita-pf.component';
     MatListModule,
     MatTooltipModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SharedModule
   ]
 })
 export class CadastroPfModule { }

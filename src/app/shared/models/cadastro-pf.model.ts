@@ -7,6 +7,7 @@ export class CadastroPf {
 		public numero: string,
 		public complemento: string,
         public bairro: string,
-        public telefone: string) {}
+		public telefone: number
+		) {}
 
 }
