@@ -30,6 +30,7 @@ export class ListaPedidoMesaComponent implements OnInit {
   formaPagamentos: FormaPagamento[];
   pagamentos: Pagamento[];
   clientes: Cliente[];
+  cliente: Cliente;
   trocoInput: number;
   valorPagoInput: number;
   formaPagamento: any;
@@ -58,13 +59,13 @@ export class ListaPedidoMesaComponent implements OnInit {
       .subscribe(res => this.formaPagamentos = res);
     this.pagamentoService.findPagamentosByIdMesa(this.route.snapshot.params['id'])
       .subscribe(res => this.pagamentos = res);
-      this.clienteService.listarClientes().subscribe(res => this.clientes = res);
+      
     
   }
 
   gerarForm() {
     this.form = this.formBuilder.group({
-  		cliente: ['', [Validators.required]],
+  		cliente: this.formBuilder.control(['', [Validators.required]]),
       fPagamento: this.formBuilder.control('', [Validators.required]),
       valorPago: this.formBuilder.control('', [Validators.required]),
       troco: this.formBuilder.control('', [Validators.required])
@@ -75,8 +76,7 @@ export class ListaPedidoMesaComponent implements OnInit {
     this.modalService.open(content);
     this.pagamentoService.findPagamentosByIdMesa(this.route.snapshot.params['id'])
       .subscribe(res => this.pagamentos = res);
-    
-    
+      this.clienteService.listarClientes().subscribe(res => this.clientes = res);
   }
 
   
@@ -103,10 +103,9 @@ export class ListaPedidoMesaComponent implements OnInit {
 
   salvar() {
     const pagamento: Pagamento = this.form.value;
-    console.log("form" + this.form.value);
 
     pagamento.mesa = this.pedido.mesa;
-    console.log(pagamento);
+    
 
     this.pagamentoService.salvaPagamento(pagamento).subscribe();
     this.router.navigate(['/order-mesa-confirmation']);

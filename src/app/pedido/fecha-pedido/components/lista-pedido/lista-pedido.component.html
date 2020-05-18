@@ -15,12 +15,14 @@
     
     <div>
         <h2>Total: {{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h2>
-        <h5>Troco para : {{ pedido?.valorPago | currency: 'BRL': 'symbol' }}</h5>
-        <h5>Valor de troco : {{ pedido?.valorPago  - pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h5>
+        <h5 *ngIf="pedido?.formaPagamento.formaPagamento == 'DINHEIRO'">Troco para : {{ pedido?.valorPago | currency: 'BRL': 'symbol' }}</h5>
+        <h5 *ngIf="pedido?.formaPagamento.formaPagamento == 'DINHEIRO'">Valor de troco : {{ pedido?.valorPago  - pedido?.totalPedido | currency: 'BRL': 'symbol' }}</h5>
     </div>
     <h4><strong>Forma de Pagamento:</strong>  {{ pedido?.formaPagamento.formaPagamento }}</h4>
-    <div class="footer">
-        <h2>MARMITESKE</h2>
+    <br *ngIf="pedido?.formaPagamento.formaPagamento == 'ASSINAR'">
+    <hr *ngIf="pedido?.formaPagamento.formaPagamento == 'ASSINAR'">
+    <div>
+        <h3>MARMITESKE 66 9 9602-9237</h3>
     </div>
 </div>
 <button class="btn btn-primary" (click)="imprimir()" >Imprimir</button>

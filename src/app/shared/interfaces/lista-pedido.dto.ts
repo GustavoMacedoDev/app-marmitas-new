@@ -6,6 +6,7 @@ import { MesaDto } from './mesa.dto';
 export interface ListaPedido {
     idPedido: string;
     instante: string;
+    clienteMesa: string;
     cliente: Cliente;
     itens: ProdutoDto[];
     formaPagamento: FormaPagamento;

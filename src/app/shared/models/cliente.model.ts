@@ -1,6 +1,6 @@
 import { Endereco } from './endereco.dto';
 
-export interface Cliente {
+export class Cliente {
     id : string;
     nome: string;
     telefone: string;
@@ -9,4 +9,8 @@ export interface Cliente {
     complemento: string;
     bairro: string;
     enderecos: Endereco[];
+
+    public getId() {
+        return this.id = '1';
+    }
 }
