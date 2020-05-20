@@ -13,6 +13,7 @@ export class PedidoService {
 
   private readonly PATH: string = 'api/pedido/';
   private readonly PATHMESA: string = 'api/pedidoOpcao/';
+  private readonly PATHPEDIDOSFECHADOS: string = 'api/pedidosfechados/';
   private readonly PATHMESAID: string = 'api/pedidosMesa/';
 
   constructor(public httpClient: HttpClient,
@@ -36,4 +37,5 @@ export class PedidoService {
       return this.httpClient.get(
         env.baseUrl + this.PATHMESA + id, this.httpUtil.headers());
     }
+
 }

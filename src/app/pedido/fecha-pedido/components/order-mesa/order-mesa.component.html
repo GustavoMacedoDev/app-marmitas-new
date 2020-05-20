@@ -9,7 +9,14 @@
             (decreaseQty)="decreaseQty($event)"
             (remove)="remove($event)"></app-order-items>
     </div>
-  </form>
+ 
+
+
+  <div class="btn">
+    <mat-form-field>
+      <mat-label>Observação</mat-label>
+      <textarea matInput formControlName="observacao"></textarea>
+    </mat-form-field>
   </div>
 
   <div class="col-sm-6 col-xs-12">
@@ -18,7 +25,8 @@
     <app-revisa-mesa
       [itemsValue]="itemsValue()"></app-revisa-mesa>
   </div>
-
+</form>
+</div>
   <div class="row">
     <div class="col-xs-12">
       <button (click)="checkOrder(orderForm.value)" class="btn btn-success pull-right">

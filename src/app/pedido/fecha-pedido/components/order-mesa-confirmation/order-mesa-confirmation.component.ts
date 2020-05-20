@@ -9,7 +9,7 @@ import { PedidoDto } from 'src/app/shared';
 })
 export class OrderMesaConfirmationComponent implements OnInit {
 
-  pedidos: PedidoDto[];
+  pedidosAbertos: PedidoDto[];
 
   constructor(
               private pedidoService: PedidoService
@@ -20,6 +20,6 @@ export class OrderMesaConfirmationComponent implements OnInit {
   }
 
   listarPedidos() {
-    this.pedidoService.listarPedidosPorOpcao(3).subscribe(res => this.pedidos = res);
+    this.pedidoService.listarPedidosPorOpcao(3).subscribe(res => this.pedidosAbertos = res);
   }
 }

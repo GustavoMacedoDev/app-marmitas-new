@@ -27,10 +27,9 @@
     </div>
       <div>
         <h4>Total em aberto: {{ pedido?.valorEmAberto | currency: 'BRL': 'symbol' }}</h4>
-        <h4>Total da Mesa: {{ pedido?.valorTotalPedido | currency: 'BRL': 'symbol' }}</h4>
+        <h4>Total da Mesa: {{ pedido?.mesa.totalMesa | currency: 'BRL': 'symbol' }}</h4>
       </div>
       
-      {{ form.value | json }}
 
       <div>
         <form [formGroup]="form" novalidate>
@@ -95,7 +94,10 @@
   </div>
   
   <div>
-      <h2>Total: {{ pedido?.valorTotalPedido | currency: 'BRL': 'symbol' }}</h2>
+      <h2>Total: {{ pedido?.mesa.totalMesa | currency: 'BRL': 'symbol' }}</h2>
+  </div>
+  <div *ngIf="pedido?.observacao">
+    <h6>Observação: {{ pedido?.observacao }}</h6>
   </div>
   <div class="footer">
       <h2>MARMITESKE</h2>

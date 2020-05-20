@@ -23,6 +23,7 @@ export class ListaPedidoComponent implements OnInit {
   pedido: ListaPedido;
   dados: any;
   @ViewChild('content') content: ElementRef;
+  @ViewChild('report') report: ElementRef;
   formaPagamentos: FormaPagamento[];
   pagamentos: Pagamento[];
   clientes: Cliente[];
@@ -84,9 +85,9 @@ export class ListaPedidoComponent implements OnInit {
       } 
     };
 
-    let content = this.content.nativeElement;
+    let report = this.report.nativeElement;
 
-    doc.fromHTML(content.innerHTML, 5, 5, {
+    doc.fromHTML(report.innerHTML, 5, 5, {
       'width': 70,
       'elementHandlers': specialElementHandlers
     });
