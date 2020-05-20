@@ -13,4 +13,5 @@ export interface PedidoDto {
     opAtendimento: OpcaoAtendimento;
     totalPedido: number;
     valorPago: number;
+    observacao: string;
 }

@@ -1,0 +1,14 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Forma de Pagamento</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pagamento of pagamentos">
+            <td>{{ pagamento.formaPagamento.formaPagamento }}</td>
+            <td>{{ pagamento.valorPago | currency : 'BRL' : 'symbol' }}</td>
+        </tr>
+    </tbody>
+</table>

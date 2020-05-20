@@ -2,9 +2,9 @@ import { FormaPagamento } from '../models/forma-pagamento.model';
 import { MesaDto } from './mesa.dto';
 import { Cliente } from '../models/cliente.model';
 
-export interface Pagamento {
+export class Pagamento {
     id: string;
-    valor: number;
+    valorPago: number;
     formaPagamento: FormaPagamento;
     mesa: MesaDto;
     cliente: Cliente;

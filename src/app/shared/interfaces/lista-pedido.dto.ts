@@ -15,4 +15,5 @@ export interface ListaPedido {
     valorEmAberto: number;
     valorTotalPedido: number;
     valorPago: number;
+    observacao: string;
 }

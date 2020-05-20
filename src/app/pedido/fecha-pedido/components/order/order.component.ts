@@ -47,7 +47,8 @@ export class OrderComponent implements OnInit {
     this.orderForm = this.formBuilder.group({
   		cliente: ['', [Validators.required]],
       formaPagamento: this.formBuilder.control('', [Validators.required]),
-      valorPago: this.formBuilder.control('', [Validators.required])
+      valorPago: this.formBuilder.control('', [Validators.required]),
+      observacao: this.formBuilder.control('', )
   	});
   }
 

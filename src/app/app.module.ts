@@ -28,6 +28,8 @@ import { TaxaEntregaModule } from './pedido/taxa-entrega/taxa-entrega.module';
 import { TaxaEntregaRoutingModule } from './pedido/taxa-entrega/taxa-entrega.routing';
 import { CategoriaRoutingModule } from './categoria/categoria/categoria.routing';
 import { CategoriaModule } from './categoria/categoria/categoria.module';
+import { ResumoModule } from './faturamento/resumo/resumo.module';
+import { ResumoRoutingModule } from './faturamento/resumo/resumo.routing';
 
 registerLocaleData(localePtBr);
 
@@ -64,6 +66,8 @@ registerLocaleData(localePtBr);
     TaxaEntregaRoutingModule,
     CategoriaModule,
     CategoriaRoutingModule,
+    ResumoModule,
+    ResumoRoutingModule,
     
     AppRoutingModule
   ],
