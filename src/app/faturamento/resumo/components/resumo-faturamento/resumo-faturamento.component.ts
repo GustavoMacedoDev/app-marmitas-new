@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class ResumoFaturamentoComponent implements OnInit, OnChanges {
 
   pagamentos: Pagamento[];
+  total: number;
 
   constructor(
               private pagamentoService: PagamentoService
@@ -21,13 +22,12 @@ export class ResumoFaturamentoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.pagamentoService.listaPagamentos()
-      .subscribe(res => this.pagamentos = res);
-    this.soma();
+      .subscribe(res => { this.pagamentos = res;
+    this.soma()});
   }
 
   soma() {
-    const total = this.pagamentos.reduce((a, b) => a = b.valorPago, 0);
-    console.log(total);
+    this.total = this.pagamentos.reduce((a, b) => a = b.valorPago, 0);
   }
   
 

@@ -30,6 +30,8 @@ import { CategoriaRoutingModule } from './categoria/categoria/categoria.routing'
 import { CategoriaModule } from './categoria/categoria/categoria.module';
 import { ResumoModule } from './faturamento/resumo/resumo.module';
 import { ResumoRoutingModule } from './faturamento/resumo/resumo.routing';
+import { BalcaoModule } from './atendimento/balcao/balcao.module';
+import { BalcaoRoutingModule } from './atendimento/balcao/balcao-routing.module';
 
 registerLocaleData(localePtBr);
 
@@ -68,6 +70,8 @@ registerLocaleData(localePtBr);
     CategoriaRoutingModule,
     ResumoModule,
     ResumoRoutingModule,
+    BalcaoModule,
+    BalcaoRoutingModule,
     
     AppRoutingModule
   ],

@@ -13,6 +13,7 @@ export class PedidoService {
 
   private readonly PATH: string = 'api/pedido/';
   private readonly PATHMESA: string = 'api/pedidoOpcao/';
+  private readonly PATHENTREGASINATIVAS: string = 'api/pedidoInativosOpcao/';
   private readonly PATHPEDIDOSFECHADOS: string = 'api/pedidosfechados/';
   private readonly PATHMESAID: string = 'api/pedidosMesa/';
 
@@ -33,9 +34,14 @@ export class PedidoService {
         env.baseUrl + this.PATHMESAID + id, this.httpUtil.headers());
      }
 
-     listarPedidosPorOpcao(id: number): Observable<any> {
+    listarPedidosAtivosPorOpcao(id: number): Observable<any> {
       return this.httpClient.get(
         env.baseUrl + this.PATHMESA + id, this.httpUtil.headers());
+    }
+
+    listarPedidosInativosPorOpcao(id: number): Observable<any> {
+      return this.httpClient.get(
+        env.baseUrl + this.PATHENTREGASINATIVAS + id, this.httpUtil.headers());
     }
 
 }

@@ -57,11 +57,9 @@
               <label>Valor de Troco</label> <br >
               <h1>{{trocoInput - valorPagoInput | currency: 'BRL': 'symbol' }} </h1>
             </div>
-          
             <div class="form-group col-sm-12">
               <label>Cliente</label> <br >
               <select class="form-control" formControlName="cliente">
-                <option [selected]="true" value="">Selecione um cliente</option>
                 <option *ngFor="let cliente of clientes" 
                   value="{{ cliente.id }}">
                     {{ cliente.nome }}

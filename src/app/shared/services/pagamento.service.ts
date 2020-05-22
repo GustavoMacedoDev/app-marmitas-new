@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class PagamentoService {
 
   private readonly PATHCADASTRA: string = 'api/pagamento';
+  private readonly PATHPAGAMENTOENTREGA: string = 'api/pagamentoentrega';
   private readonly PATH: string = 'api/pagamentos';
   private readonly PATHBUSCAPORMESA: string = 'api/pagamento/mesa/';
   private readonly PATHBUSCAPORPEDIDO: string = 'api/pagamento/entrega/';
@@ -27,6 +28,10 @@ export class PagamentoService {
 
     salvaPagamento(pagamento: Pagamento): Observable<any> {
       return this.httpClient.post(env.baseUrl + this.PATHCADASTRA, pagamento, this.httpUtil.headers() );
+    }
+
+    salvaPagamentoEntrega(pagamento: Pagamento): Observable<any> {
+      return this.httpClient.post(env.baseUrl + this.PATHPAGAMENTOENTREGA, pagamento, this.httpUtil.headers() );
     }
 
     findPagamentosByIdMesa(id): Observable<any> {

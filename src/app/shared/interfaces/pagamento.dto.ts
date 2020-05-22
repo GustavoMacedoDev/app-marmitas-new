@@ -8,4 +8,5 @@ export class Pagamento {
     formaPagamento: FormaPagamento;
     mesa: MesaDto;
     cliente: Cliente;
+    idPedido: string;
 }

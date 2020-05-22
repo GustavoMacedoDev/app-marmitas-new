@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PedidoDto } from 'src/app/shared';
 import { PedidoService } from 'src/app/shared/services/pedido.service';
 import * as jsPdf from  'jspdf';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListaPedido } from 'src/app/shared/interfaces/lista-pedido.dto';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PagamentoService } from 'src/app/shared/services/pagamento.service';
@@ -21,6 +21,7 @@ export class ListaPedidoComponent implements OnInit {
 
   form: FormGroup;
   pedido: ListaPedido;
+  pedidoPag: ListaPedido;
   dados: any;
   @ViewChild('content') content: ElementRef;
   @ViewChild('report') report: ElementRef;
@@ -40,7 +41,8 @@ export class ListaPedidoComponent implements OnInit {
               private modalService: NgbModal,
               private pagamentoService: PagamentoService,
               private clienteService: ClienteService,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+              private router: Router
               ) { 
                 config.backdrop = 'static';
                 config.keyboard = false;
@@ -73,7 +75,12 @@ export class ListaPedidoComponent implements OnInit {
     this.modalService.open(content);
     this.pagamentoService.findPagamentosByIdPedido(this.route.snapshot.params['id'])
       .subscribe(res => this.pagamentos = res);
-      this.clienteService.listarClientes().subscribe(res => this.clientes = res);
+    this.clienteService.listarClientes().subscribe(res => {
+        this.clientes = res;
+        console.log(this.clientes);
+      });
+    this.pedidoService.listaPedidoById(this.route.snapshot.params['id'])
+      .subscribe(res => this.pedidoPag = res);
   }
 
   imprimir(){
@@ -96,6 +103,15 @@ export class ListaPedidoComponent implements OnInit {
   }
 
   salvar() {
+
+    const pagamento: Pagamento = this.form.value;
+
+    pagamento.idPedido = this.pedido.idPedido;
+
+    console.log(pagamento);
+
+    this.pagamentoService.salvaPagamentoEntrega(pagamento).subscribe();
+    this.router.navigate(['/order-confirmation']);
 
   }
 

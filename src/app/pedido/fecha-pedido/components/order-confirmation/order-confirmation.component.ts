@@ -12,7 +12,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class OrderConfirmationComponent implements OnInit {
 
-  pedidos: PedidoDto[];
+  pedidosAbertos: PedidoDto[];
+  pedidosFechados: PedidoDto[];
   pedido: PedidoDto;
   mesa: string = "mesa";
 
@@ -35,7 +36,8 @@ export class OrderConfirmationComponent implements OnInit {
   }
 
   listarPedidos() {
-    this.pedidoService.listarPedidosPorOpcao(2).subscribe(res => this.pedidos = res);
+    this.pedidoService.listarPedidosAtivosPorOpcao(2).subscribe(res => this.pedidosAbertos = res);
+    this.pedidoService.listarPedidosInativosPorOpcao(2).subscribe(res => this.pedidosFechados = res);
   }
 
   listaPedido(id: number) {

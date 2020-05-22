@@ -26,8 +26,7 @@
         
       </div>
         <div>
-          <h4>Total em aberto: {{ pedido?.valorEmAberto | currency: 'BRL': 'symbol' }}</h4>
-          <h4>Total da Mesa: {{ pedido?.valorTotalPedido | currency: 'BRL': 'symbol' }}</h4>
+          <h4>Total da Entrega: {{ pedidoPag?.totalPedido | currency: 'BRL': 'symbol' }}</h4>
         </div>
         
         {{ form.value | json }}

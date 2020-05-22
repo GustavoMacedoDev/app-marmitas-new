@@ -23,8 +23,9 @@ export class OpcaoAtendimentoComponent implements OnInit {
   }
 
   opcaoAtendimento(id) {
+    console.log(id);
     if(id == 1) {
-      this.router.navigate['/balcao'];
+      this.router.navigate(['/lanca-pedido-balcao']);
     } else if (id == 2){
       this.router.navigate(['/restaurants/2/menu']);
     } else {

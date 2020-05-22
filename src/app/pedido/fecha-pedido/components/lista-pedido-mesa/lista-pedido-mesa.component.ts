@@ -104,6 +104,8 @@ export class ListaPedidoMesaComponent implements OnInit {
   salvar() {
     const pagamento: Pagamento = this.form.value;
 
+    console.log(pagamento);
+
     pagamento.mesa = this.pedido.mesa;
     
 
