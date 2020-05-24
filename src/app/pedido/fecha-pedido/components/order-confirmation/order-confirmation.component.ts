@@ -3,6 +3,8 @@ import { PedidoDto } from 'src/app/shared';
 import { PedidoService } from 'src/app/shared/services/pedido.service';
 import * as jspdf from 'jspdf';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Pagamento } from 'src/app/shared/interfaces/pagamento.dto';
+import { PagamentoService } from 'src/app/shared/services/pagamento.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -16,9 +18,11 @@ export class OrderConfirmationComponent implements OnInit {
   pedidosFechados: PedidoDto[];
   pedido: PedidoDto;
   mesa: string = "mesa";
+  pagamentos: Pagamento[];
 
   constructor(
               private pedidoService: PedidoService,
+              private pagamentoService: PagamentoService,
               config: NgbModalConfig,
               private modalService: NgbModal
               ) {
@@ -26,8 +30,10 @@ export class OrderConfirmationComponent implements OnInit {
                 config.keyboard = false;
                }
 
-  open(content) {
+  open(content, id) {
     this.modalService.open(content);
+    this.pagamentoService.findPagamentosByIdPedido(id).subscribe(res => this.pagamentos = res);
+    
   }
 
 
