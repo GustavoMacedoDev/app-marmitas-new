@@ -95,8 +95,11 @@ export class ListaPedidoMesaComponent implements OnInit {
 
     doc.fromHTML(report.innerHTML, 5, 5, {
       'width': 70,
-      'elementHandlers': specialElementHandlers
+      'height': 100,
+      'elementHandlers': specialElementHandlers,
     });
+
+    doc.autoPrint();
 
     doc.output('dataurlnewwindow');
   }

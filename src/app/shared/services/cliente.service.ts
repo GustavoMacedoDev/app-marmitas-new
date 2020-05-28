@@ -10,7 +10,8 @@ import { Cliente } from '../models/cliente.model';
 })
 export class ClienteService {
 
-  private readonly PATH: string = 'api/cliente';
+  private readonly PATH: string = 'api/clientes';
+  private readonly PATHBUSCABYID: string = 'api/cliente/';
 
   constructor(public httpClient: HttpClient,
      public httpUtil: HttpUtilService) { }
@@ -22,6 +23,10 @@ export class ClienteService {
   findByTelefone(telefone: Cliente) {
     return this.httpClient.get<Cliente>(`${env.baseUrl}api/clientes?value=${telefone}`, 
             this.httpUtil.headers());
+  }
+
+  findById(id: string): Observable<any> {
+    return this.httpClient.get(env.baseUrl + this.PATHBUSCABYID + id, this.httpUtil.headers());
   }
 
 }

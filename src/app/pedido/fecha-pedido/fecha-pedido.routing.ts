@@ -17,7 +17,9 @@ export const FechaPedidoRoutes: Routes = [
     path: 'order-mesa/:id', component: OrderMesaComponent
   },
   {
-    path: 'order-confirmation', component: OrderConfirmationComponent
+    path: 'order-confirmation', 
+    component: OrderConfirmationComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'lista-pedido', component: ListaPedidoComponent

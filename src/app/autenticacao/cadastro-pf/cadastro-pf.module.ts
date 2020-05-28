@@ -25,6 +25,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FlexLayoutModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatInputModule,

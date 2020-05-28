@@ -54,8 +54,11 @@ export class CadastrarPfComponent implements OnInit {
         },
         err => {
           let msg: string = "Tente novamente em instantes.";
+          console.log(err.status);
           if (err.status == 400) {
             msg = err.error.errors.join(' ');
+          } else if (err.status == 500) {
+            msg = "Cliente já cadastrado";
           }
           this.snackBar.open(msg, "Erro", { duration: 5000 });
         }
