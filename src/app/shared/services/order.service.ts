@@ -16,6 +16,7 @@ export class OrderService {
 
   private readonly PATH: string = 'api/order';
   private readonly PATHMESA: string = 'api/orderMesa';
+  private readonly PATHBALCAO: string = 'api/orderBalcao';
 
 
   constructor(private cartService: ShoppingCartService,
@@ -56,6 +57,13 @@ export class OrderService {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json');
     return this.http.post(env.baseUrl + this.PATHMESA, pedido,
+       this.httpUtil.headers());
+  }
+
+  checkOrderBalcao(pedido: PedidoDto): Observable<any> {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(env.baseUrl + this.PATHBALCAO, pedido,
        this.httpUtil.headers());
   }
 }

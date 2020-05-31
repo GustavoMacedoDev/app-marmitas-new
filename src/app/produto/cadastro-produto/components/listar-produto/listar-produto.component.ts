@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoDto } from 'src/app/shared';
 import { ProdutoService } from 'src/app/shared/services';
+import { Observable } from 'rxjs';
+import { Produto } from 'src/app/shared/models/produto.dto';
 
 @Component({
   selector: 'app-listar-produto',
@@ -10,7 +12,7 @@ import { ProdutoService } from 'src/app/shared/services';
 export class ListarProdutoComponent implements OnInit {
 
   produtos: ProdutoDto[];
-  prods: ProdutoDto[];
+  prods: any;
 
   constructor(private produtoService: ProdutoService) { }
 

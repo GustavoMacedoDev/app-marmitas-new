@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 import { ClienteService } from 'src/app/shared/services/cliente.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Endereco } from 'src/app/shared/models/endereco.dto';
+import { EnderecoService } from 'src/app/shared/services/endereco.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edita-pf',
@@ -20,10 +22,13 @@ export class EditaPfComponent implements OnInit {
 
   constructor(
               private clienteService: ClienteService,
+              private enderecoService: EnderecoService,
               config: NgbModalConfig, 
               private modalService: NgbModal,
               private router: ActivatedRoute,
-              private fb: FormBuilder
+              private route: Router,
+              private fb: FormBuilder, 
+              private snackBar: MatSnackBar
               ) {
                 config.backdrop = 'static';
                 config.keyboard = false;
@@ -60,6 +65,24 @@ export class EditaPfComponent implements OnInit {
   cadastrarEnderecoPf() {
     const endereco: Endereco = this.form.value;
     endereco.cliente = this.cliente;
+
+    this.enderecoService.cadastrar(endereco).subscribe(
+      data => {
+        const msg: string = "Endereço cadastrado com sucesso";
+        this.snackBar.open(msg, "Sucesso", { duration: 5000 });
+        this.route.navigate(['/lista-clientes']);
+      },
+      err => {
+        let msg: string = "Tente novamente em instantes.";
+        console.log(err.status);
+        if (err.status == 400) {
+          msg = err.error.errors.join(' ');
+        } else if (err.status == 500) {
+          msg = "Cliente já cadastrado";
+        }
+        this.snackBar.open(msg, "Erro", { duration: 5000 });
+      }
+    );
 
     console.log(endereco);
 

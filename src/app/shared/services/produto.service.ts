@@ -17,7 +17,7 @@ export class ProdutoService {
   private readonly PATHENTREGA: string = 'api/produtosentrega';
   private readonly PATH: string = 'api/produtos';
   private readonly PATHCADASTRO: string = 'api/produto';
-  private readonly PATHINATIVA: string = 'api/produtoinativa/';
+  private readonly PATHINATIVA: string = 'api/produto/';
   private readonly PATHEDITAR: string = 'api/produto';
   private readonly PATHBUSCA: string = 'api/produto/';
   private readonly PATHBUSCAPORID: string = 'api/produtoid/';
@@ -66,7 +66,7 @@ export class ProdutoService {
       produto, this.httpUtil.headers());
   }
 
-  inativaProduto(produtoId): Observable<any> {
+  inativaProduto(produtoId) {
     console.log(produtoId);
     const headers = new Headers()
     headers.append('Content-Type', 'application/json');
