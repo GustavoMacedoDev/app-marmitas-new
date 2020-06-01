@@ -1,0 +1,26 @@
+<h3>Pedido {{ pedido?.idPedido }} - {{ pedido?.instante }}</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+            <th>SubTotal Produto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let itens of pedido?.itens">
+            <td>{{ itens.produto.nome }}</td>
+            <td>{{ itens.quantidade }}</td>
+            <td>{{ itens.preco | currency: 'BRL': 'symbol' }}</td>
+            <td>{{ itens.preco * itens.quantidade | currency: 'BRL': 'symbol' }}</td>
+        </tr>
+       
+    </tbody>
+    <tr>
+        <td colspan="3"><strong>Total Geral </strong></td>
+        <td><strong>{{ pedido?.totalPedido | currency: 'BRL': 'symbol' }}</strong></td>
+    </tr>
+</table>
+
+<button class="btn btn-primary" [routerLink]="['/lista-pedido-balcao']">Voltar</button>

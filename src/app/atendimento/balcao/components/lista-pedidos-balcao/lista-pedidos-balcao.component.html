@@ -3,6 +3,7 @@
         <tr>
             <th>Pedido</th>
             <th>Data</th>
+            <th>Editar</th>
             <th>Imprimir</th>
         </tr>
     </thead>
@@ -12,10 +13,16 @@
             <td>{{ pedido.instante }}</td>
             <td>
                 <a class="btn btn-info" 
-                  [routerLink]="['/impressao-balcao/'] + pedido?.idPedido ">
-                  Ver
+                [routerLink]="['/edita-pedido-balcao/'] + pedido?.idPedido ">
+                Editar
                 </a>
-              </td>
+            </td>
+            <td>
+                <a class="btn btn-info" 
+                [routerLink]="['/impressao-balcao/'] + pedido?.idPedido ">
+                Ver
+                </a>
+            </td>
         </tr>
     </tbody>
 </table>
