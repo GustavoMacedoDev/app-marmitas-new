@@ -16,6 +16,7 @@ export class PedidoService {
   private readonly PATHENTREGASINATIVAS: string = 'api/pedidoInativosOpcao/';
   private readonly PATHPEDIDOSFECHADOS: string = 'api/pedidosfechados/';
   private readonly PATHMESAID: string = 'api/pedidosMesa/';
+  private readonly PATHPEDIDOBALCAO: string = 'api/pedidoBalcao/';
 
   constructor(public httpClient: HttpClient,
      public httpUtil: HttpUtilService) { }
@@ -28,6 +29,11 @@ export class PedidoService {
        return this.httpClient.get(
          env.baseUrl + this.PATH + id, this.httpUtil.headers());
      }
+
+     listaPedidoByIdPedido(id): Observable<any> {
+      return this.httpClient.get(
+        env.baseUrl + this.PATHPEDIDOBALCAO + id, this.httpUtil.headers());
+    }
 
      listaPedidoByIdMesa(id: number): Observable<any> {
       return this.httpClient.get(

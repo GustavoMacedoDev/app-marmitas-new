@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ListaPedidosBalcaoComponent } from './components/lista-pedidos-balcao/lista-pedidos-balcao.component';
+import { ImpressaoPedidoBalcaoComponent } from './components/impressao-pedido-balcao/impressao-pedido-balcao.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ListaPedidosBalcaoComponent } from './components/lista-pedidos-balcao/l
     OrderBalcaoComponent,
     RevisaBalcaoComponent,
     ItemsComponent,
-    ListaPedidosBalcaoComponent
+    ListaPedidosBalcaoComponent,
+    ImpressaoPedidoBalcaoComponent
   ],
   imports: [
     CommonModule,

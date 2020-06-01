@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LancaPedidoBalcaoComponent } from './components/lanca-pedido-balcao/lanca-pedido-balcao.component';
 import { OrderBalcaoComponent } from './components/order-balcao/order-balcao.component';
 import { ListaPedidosBalcaoComponent } from './components/lista-pedidos-balcao/lista-pedidos-balcao.component';
+import { ImpressaoPedidoBalcaoComponent } from './components/impressao-pedido-balcao/impressao-pedido-balcao.component';
 
 
 export const BalcaoRoutes: Routes = [
@@ -17,6 +18,10 @@ export const BalcaoRoutes: Routes = [
   {
     path: 'lista-pedido-balcao',
     component: ListaPedidosBalcaoComponent
+  },
+  {
+    path: 'impressao-balcao/:id',
+    component: ImpressaoPedidoBalcaoComponent
   }
 ];
 
