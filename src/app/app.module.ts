@@ -32,6 +32,8 @@ import { ResumoModule } from './faturamento/resumo/resumo.module';
 import { ResumoRoutingModule } from './faturamento/resumo/resumo.routing';
 import { BalcaoModule } from './atendimento/balcao/balcao.module';
 import { BalcaoRoutingModule } from './atendimento/balcao/balcao-routing.module';
+import { PedidoMesaModule } from './pedido-mesa/pedido-mesa.module';
+import { PedidoMesaRoutingModule } from './pedido-mesa/pedido-mesa-routing.module';
 
 registerLocaleData(localePtBr);
 
@@ -72,6 +74,8 @@ registerLocaleData(localePtBr);
     ResumoRoutingModule,
     BalcaoModule,
     BalcaoRoutingModule,
+    PedidoMesaModule,
+    PedidoMesaRoutingModule,
     
     AppRoutingModule
   ],
