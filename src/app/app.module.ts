@@ -34,6 +34,7 @@ import { BalcaoModule } from './atendimento/balcao/balcao.module';
 import { BalcaoRoutingModule } from './atendimento/balcao/balcao-routing.module';
 import { PedidoMesaModule } from './pedido-mesa/pedido-mesa.module';
 import { PedidoMesaRoutingModule } from './pedido-mesa/pedido-mesa-routing.module';
+import { AdminGuard } from './autenticacao/admin/services/admin-guard.service';
 
 registerLocaleData(localePtBr);
 
@@ -79,7 +80,7 @@ registerLocaleData(localePtBr);
     
     AppRoutingModule
   ],
-  providers: [{ provide : LOCALE_ID, useValue : 'pt-BR'}],
+  providers: [{ provide : LOCALE_ID, useValue : 'pt-BR'}, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

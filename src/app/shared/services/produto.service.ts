@@ -41,7 +41,7 @@ export class ProdutoService {
     return this.httpClient.get(env.baseUrl + this.PATH, this.httpUtil.headers());
   }
 
-  listaProdutosPorCategoria(id: string) : Observable<any>{
+  listaProdutosPorCategoria(id) : Observable<any>{
     console.log(id);
     return this.httpClient.get(env.baseUrl + this.PATHBUSCA + id, this.httpUtil.headers());
   }

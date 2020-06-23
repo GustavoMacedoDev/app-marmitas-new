@@ -13,6 +13,7 @@ export class PagamentoService {
   private readonly PATHCADASTRA: string = 'api/pagamento';
   private readonly PATHPAGAMENTOENTREGA: string = 'api/pagamentoentrega';
   private readonly PATH: string = 'api/pagamentos';
+  private readonly PATHFATURAMENTO: string = 'api/faturamento';
   private readonly PATHBUSCAPORMESA: string = 'api/pagamento/mesa/';
   private readonly PATHBUSCAPORPEDIDO: string = 'api/pagamento/entrega/';
 
@@ -47,6 +48,12 @@ export class PagamentoService {
                                 this.httpUtil.headers()
                                 );
     }
+
+    faturamento(): Observable<any> {
+      return this.httpClient.get(env.baseUrl + this.PATHFATURAMENTO,
+                                this.httpUtil.headers());
+    }
+
 
 
 }

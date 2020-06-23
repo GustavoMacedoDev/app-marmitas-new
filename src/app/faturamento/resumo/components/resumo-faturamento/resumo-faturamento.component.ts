@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Pagamento } from 'src/app/shared/interfaces/pagamento.dto';
 import { PagamentoService } from 'src/app/shared/services/pagamento.service';
 import { Observable } from 'rxjs';
+import { Faturamento } from 'src/app/shared/interfaces/faturamento.model';
 
 @Component({
   selector: 'app-resumo-faturamento',
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
 export class ResumoFaturamentoComponent implements OnInit, OnChanges {
 
   pagamentos: Pagamento[];
+  faturamentos: Faturamento[];
   total: number;
 
   constructor(
@@ -21,13 +23,13 @@ export class ResumoFaturamentoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.pagamentoService.listaPagamentos()
-      .subscribe(res => { this.pagamentos = res;
+    this.pagamentoService.faturamento()
+      .subscribe(res => { this.faturamentos = res;
     this.soma()});
   }
 
   soma() {
-    this.total = this.pagamentos.reduce((a, b) => a = b.valorPago, 0);
+    this.total = this.faturamentos.reduce((a, b) => a + b.valor, 0);
   }
   
 

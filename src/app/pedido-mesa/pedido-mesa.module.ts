@@ -16,13 +16,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ListaOpcoesPedidoComponent } from './pedido-cliente/components/lista-opcoes-pedido/lista-opcoes-pedido.component';
-import { OpcaoPedidoCienteComponent } from './pedido-cliente/components/opcao-pedido-ciente/opcao-pedido-ciente.component';
-import { OpcaoPedidoClienteComponent } from './pedido-cliente/components/opcao-pedido-cliente/opcao-pedido-cliente.component';
+import { PratoPedidoClienteComponent } from './pedido-cliente/components/prato-pedido-cliente/prato-pedido-cliente.component';
 
 
 
 @NgModule({
-  declarations: [PedidoClienteComponent, ListaOpcoesPedidoComponent, OpcaoPedidoCienteComponent, OpcaoPedidoClienteComponent],
+  declarations: [PedidoClienteComponent, ListaOpcoesPedidoComponent, PratoPedidoClienteComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,

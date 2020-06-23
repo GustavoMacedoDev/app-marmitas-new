@@ -9,4 +9,5 @@ export class Pagamento {
     mesa: MesaDto;
     cliente: Cliente;
     idPedido: string;
+    
 }

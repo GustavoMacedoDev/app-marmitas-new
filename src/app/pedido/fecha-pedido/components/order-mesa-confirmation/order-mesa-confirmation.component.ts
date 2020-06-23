@@ -20,6 +20,6 @@ export class OrderMesaConfirmationComponent implements OnInit {
   }
 
   listarPedidos() {
-    this.pedidoService.listarPedidosAtivosPorOpcao(3).subscribe(res => this.pedidosAbertos = res);
+    this.pedidoService.listarMesas().subscribe(res => this.pedidosAbertos = res);
   }
 }

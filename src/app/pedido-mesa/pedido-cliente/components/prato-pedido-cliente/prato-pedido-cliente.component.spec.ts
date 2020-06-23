@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OpcaoPedidoClienteComponent } from './opcao-pedido-cliente.component';
+import { PratoPedidoClienteComponent } from './prato-pedido-cliente.component';
 
-describe('OpcaoPedidoClienteComponent', () => {
-  let component: OpcaoPedidoClienteComponent;
-  let fixture: ComponentFixture<OpcaoPedidoClienteComponent>;
+describe('PratoPedidoClienteComponent', () => {
+  let component: PratoPedidoClienteComponent;
+  let fixture: ComponentFixture<PratoPedidoClienteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OpcaoPedidoClienteComponent ]
+      declarations: [ PratoPedidoClienteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OpcaoPedidoClienteComponent);
+    fixture = TestBed.createComponent(PratoPedidoClienteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

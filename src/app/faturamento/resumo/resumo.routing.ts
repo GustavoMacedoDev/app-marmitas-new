@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ResumoFaturamentoComponent } from './components/resumo-faturamento/resumo-faturamento.component';
+import { AdminGuard } from 'src/app/autenticacao/admin/services/admin-guard.service';
 
 
 export const ResumoRoutes: Routes = [
 	{
-    path: 'resumo-faturamento', component: ResumoFaturamentoComponent
+    path: 'resumo-faturamento', 
+    component: ResumoFaturamentoComponent,
+    canActivate: [ AdminGuard ]
   }
 ];
 

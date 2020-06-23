@@ -46,10 +46,10 @@ export class LoginComponent implements OnInit {
           const usuarioData = JSON.parse(
             atob(data['data']['token'].split('.')[1]));
 
-          if (usuarioData['role'] == 'ROLE_ADMIN') {
+          if (usuarioData['role'] == 'ROLE_USER') {
            this.router.navigate(['/atendimento']);
           } else {
-            this.router.navigate(['/funcionario']);
+            this.router.navigate(['/resumo-faturamento']);
           }
         },
         err => {
