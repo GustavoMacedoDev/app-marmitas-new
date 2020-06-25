@@ -28,13 +28,13 @@ import { TaxaEntregaModule } from './pedido/taxa-entrega/taxa-entrega.module';
 import { TaxaEntregaRoutingModule } from './pedido/taxa-entrega/taxa-entrega.routing';
 import { CategoriaRoutingModule } from './categoria/categoria/categoria.routing';
 import { CategoriaModule } from './categoria/categoria/categoria.module';
-import { ResumoModule } from './faturamento/resumo/resumo.module';
-import { ResumoRoutingModule } from './faturamento/resumo/resumo.routing';
 import { BalcaoModule } from './atendimento/balcao/balcao.module';
 import { BalcaoRoutingModule } from './atendimento/balcao/balcao-routing.module';
 import { PedidoMesaModule } from './pedido-mesa/pedido-mesa.module';
 import { PedidoMesaRoutingModule } from './pedido-mesa/pedido-mesa-routing.module';
 import { AdminGuard } from './autenticacao/admin/services/admin-guard.service';
+import { AdministrativoModule } from './administrativo/administrativo.module';
+import { AdministrativoRoutingModule } from './administrativo/administrativo-routing.module';
 
 registerLocaleData(localePtBr);
 
@@ -71,12 +71,12 @@ registerLocaleData(localePtBr);
     TaxaEntregaRoutingModule,
     CategoriaModule,
     CategoriaRoutingModule,
-    ResumoModule,
-    ResumoRoutingModule,
     BalcaoModule,
     BalcaoRoutingModule,
     PedidoMesaModule,
     PedidoMesaRoutingModule,
+    AdministrativoModule,
+    AdministrativoRoutingModule,
     
     AppRoutingModule
   ],

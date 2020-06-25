@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class PagamentoService {
 
   private readonly PATHCADASTRA: string = 'api/pagamento';
+  private readonly PATHANALITICO: string = 'api/pagamento/analitico/';
   private readonly PATHPAGAMENTOENTREGA: string = 'api/pagamentoentrega';
   private readonly PATH: string = 'api/pagamentos';
   private readonly PATHFATURAMENTO: string = 'api/faturamento';
@@ -45,6 +46,13 @@ export class PagamentoService {
     findPagamentosByIdPedido(id): Observable<any> {
       return this.httpClient.get(
                                 env.baseUrl + this.PATHBUSCAPORPEDIDO + id,
+                                this.httpUtil.headers()
+                                );
+    }
+
+    findPagamentosByIdFormaPagamento(id): Observable<any> {
+      return this.httpClient.get(
+                                env.baseUrl + this.PATHANALITICO + id,
                                 this.httpUtil.headers()
                                 );
     }
